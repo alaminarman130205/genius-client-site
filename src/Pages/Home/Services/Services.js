@@ -3,11 +3,13 @@ import ServiceCart from "./ServiceCart";
 
 const Services = () => {
   const [services, setServices] = useState([]);
+
   useEffect(() => {
-    fetch("service.json")
+    fetch("http://localhost:5000/services")
       .then((res) => res.json())
       .then((data) => setServices(data));
   }, []);
+
   return (
     <div className="text-center">
       <p className="text-2xl text-orange-600">services</p>
