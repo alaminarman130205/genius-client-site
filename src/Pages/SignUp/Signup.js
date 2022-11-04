@@ -1,12 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import login from "../../assets/images/login/login.svg";
+import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 
-const Login = () => {
-  const handleLogin = (event) => {
+const Signup = () => {
+  const { createUser } = useContext(AuthContext);
+
+  const handleSignup = (event) => {
     event.preventDefault();
-  };
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
 
+    createUser(email, password)
+      .then((result) => {
+        const user = result.user;
+      })
+      .catch((error) => console.error(error));
+  };
   return (
     <div>
       <div className="hero bg-green-200">
@@ -17,8 +28,19 @@ const Login = () => {
             </p>
           </div>
           <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-            <form onSubmit={handleLogin} className="card-body">
-              <h1 className="text-5xl font-bold text-center">Login now!</h1>
+            <form onSubmit={handleSignup} className="card-body">
+              <h1 className="text-5xl font-bold text-center">Sign Up Now!</h1>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Name</span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="Name"
+                  className="input input-bordered"
+                  name="name"
+                />
+              </div>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
@@ -45,14 +67,14 @@ const Login = () => {
                 <input
                   className="btn btn-primary"
                   type="submit"
-                  value="Login"
+                  value="Sign Up"
                 />
               </div>
             </form>
             <p className="text-center">
-              new to genius car{" "}
+              Already Have An Account{" "}
               <Link className="text-orange-800" to="/signup">
-                Sign Up
+                Login
               </Link>{" "}
             </p>
           </div>
@@ -62,4 +84,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signup;
