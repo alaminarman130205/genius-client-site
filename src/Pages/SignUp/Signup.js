@@ -15,6 +15,7 @@ const Signup = () => {
     createUser(email, password)
       .then((result) => {
         const user = result.user;
+        console.log(user);
       })
       .catch((error) => console.error(error));
   };
@@ -73,7 +74,7 @@ const Signup = () => {
             </form>
             <p className="text-center">
               Already Have An Account{" "}
-              <Link className="text-orange-800" to="/signup">
+              <Link className="text-orange-800" to="/login">
                 Login
               </Link>{" "}
             </p>
