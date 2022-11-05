@@ -11,7 +11,7 @@ const Orders = () => {
       "are you sure you want to delete this order"
     );
     if (proceed) {
-      fetch(`http://localhost:5000/orders/${id}`, {
+      fetch(`https://genius-client-site-server.vercel.app/orders/${id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())
@@ -27,7 +27,7 @@ const Orders = () => {
   };
 
   const handleUpdate = (id) => {
-    fetch(`http://localhost:5000/orders/${id}`, {
+    fetch(`https://genius-client-site-server.vercel.app/orders/${id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
@@ -48,11 +48,14 @@ const Orders = () => {
   };
 
   useEffect(() => {
-    fetch(`http://localhost:5000/orders?email=${user?.email}`, {
-      headers: {
-        authorization: `Bearer ${localStorage.getItem("geniusToken")}`,
-      },
-    })
+    fetch(
+      `https://genius-client-site-server.vercel.app/orders?email=${user?.email}`,
+      {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("geniusToken")}`,
+        },
+      }
+    )
       .then((res) => {
         if (res.status === 401 || res.status === 403) {
           return logOut();
