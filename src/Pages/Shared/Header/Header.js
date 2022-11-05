@@ -4,10 +4,10 @@ import logo from "../../../assets/logo.svg";
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
 
 const Header = () => {
-  const { user, signOut } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
 
   const handleLogout = () => {
-    signOut().then().catch();
+    logOut().then().catch();
   };
   const menuItems = (
     <>
@@ -27,10 +27,10 @@ const Header = () => {
               Sign Out
             </button>{" "}
           </li>
-          <li>
+          {/* <li>
             {" "}
             <Link to="/login">Login</Link>{" "}
-          </li>
+          </li> */}
         </>
       ) : (
         <li>
